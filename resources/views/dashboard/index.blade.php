@@ -34,19 +34,7 @@
     <div class="container-xl px-4 mt-n10">
         <div class="row">
             <div class="col-xxl-12 col-xl-12 mb-4">
-                <!-- <div class="card h-100">
-                    <div class="card-body h-100 p-5">
-                        <div class="row align-items-center">
-                            <div class="col-xl-8 col-xxl-8">
-                                <div class="text-center text-xl-start text-xxl-start mb-4 mb-xl-0 mb-xxl-4">
-                                    <h1 class="text-primary">Welcome to Visit AJ&K</h1>
-                                    <p class="text-gray-700 mb-0">Azad Government of the State of Jammu & Kashmir.</p>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-xxl-4 text-center"><img class="img-fluid" src="{{asset('images/full_map.png')}}" style="max-width: 10rem" /></div>
-                        </div>
-                    </div>
-                </div> -->
+                
             </div>
         </div>
     </div>
@@ -164,7 +152,7 @@
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
                                 <div class="small fw-bold text-success mb-1">Tour Operators</div>
-                                <div class="h5">{{$operator}}</div>
+                                <div class="h5"></div>
                                 <div class="text-xs fw-bold text-success d-inline-flex align-items-center">
                                 </div>
                             </div>
@@ -180,7 +168,7 @@
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
                                 <div class="small fw-bold text-info mb-1">Users</div>
-                                <div class="h5">{{$users->count()}}</div>
+                                <div class="h5"></div>
                                 <div class="text-xs fw-bold text-danger d-inline-flex align-items-center">
                                 </div>
                             </div>

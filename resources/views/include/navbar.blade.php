@@ -157,7 +157,7 @@
                     <img class="dropdown-user-img" src="{{asset('images/logo_tran_visit.png')}}" />
                     <div class="dropdown-user-details">
                         <div class="dropdown-user-details-name">{{auth()->user()->name}}</div>
-                        <div class="dropdown-user-details-email"><a href="cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="443228312a2504252b286a272b29">{{auth()->user()->role->title}}</a></div>
+                        <div class="dropdown-user-details-email"><a href="cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="443228312a2504252b286a272b29"></a></div>
                     </div>
                 </h6>
                 <div class="dropdown-divider"></div>
