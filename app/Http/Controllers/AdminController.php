@@ -7,7 +7,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-   function Dashboard(Request $request)  {
-    dd(Auth::user());
-   }
+   public function dashboard(Request $request)
+    {
+        $data = array();
+        if ($request->expectsJson()) {
+            return response()->json($data, 200);
+        }
+        return view('dashboard.index')->with($data);
+    }
 }
