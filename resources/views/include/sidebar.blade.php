@@ -50,7 +50,7 @@
                 </a>
                 <div class="collapse" id="collapseUser" data-bs-parent="#accordionSidenav">
                     <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                        <a class="nav-link" href="">List</a>
+                        <a class="nav-link" href="{{route('user.index')}}">List</a>
                         <a class="nav-link" href="">Add User</a>
                     </nav>
                 </div>
