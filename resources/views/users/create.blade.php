@@ -39,7 +39,7 @@
                                 <input class="form-control" id="email" type="email" name="email" placeholder="Enter Email" />
                             </div>
                             <!-- Form Group (new password)-->
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label class="small mb-1" for="phone">User Role</label>
                                 <select class="form-control" id="role_id" name="role_id">
                                     <option>Chose Role</option>
@@ -47,39 +47,13 @@
                                     <option value="{{$role->id}}">{{$role->title}}</option>
                                     @endforeach
                                 </select>
-                            </div>
-                            <div class="mb-3 entrypoints-div" style="display: none;">
-                                <label for="epo_id">Entry Point Office</label>
-                                <select class="form-control" id="epo_id" name="epo_id">
-                                    <option value="">Chose Entry Point</option>
-                                    @foreach($entrpointoffices as $epo)
-                                    <option value="{{$epo->id}}">{{$epo->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            </div> --}}
                             <!-- Form Group (new password)-->
-                            <div class="mb-3 district-div" style="display: none;">
-                                <label class="small mb-1" for="district">District </label>
-                                <select class="form-control" id="district" name="district">
-                                    <option value="">Chose District</option>
-                                    <option value="Muzaffarabad">Muzaffarabad</option>
-                                    <option value="Mirpur">Mirpur</option>
-                                    <option value="Rawalakot">Rawalakot</option>
-                                    <option value="Bhimber">Bhimber</option>
-                                    <option value="Kotli">Kotli</option>
-                                    <option value="Poonch">Poonch</option>
-                                    <option value="Bagh">Bagh</option>
-                                    <option value="Hattian Bala">Hattian Bala</option>
-                                    <option value="Neelum">Neelum</option>
-                                    <option value="Haveli">Haveli</option>
-                                    <option value="Sudhnoti">Sudhnoti</option>
-                                </select>
-                            </div>
                             <!-- Upload input field -->
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="profile_picture">Profile Picture</label>
                                 <input class="form-control" type="file" name="profile_picture" id="profile_picture" accept="image/*" onchange="previewImage(event)">
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
                                 <label class="small mb-1" for="password">Password</label>
                                 <input class="form-control" id="password" type="password" name="password" placeholder="Password" />
