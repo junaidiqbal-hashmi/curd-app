@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
                 'name' => 'Admin User',
                 'role_id' => $superadminRoleId,
                 'email' => 'superadmin@example.com',
+                'phone' => '1111111111',
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'), // Change this to a more secure password
                 'remember_token' => Str::random(10),
@@ -36,6 +37,7 @@ class UserSeeder extends Seeder
                 'name' => 'Admin User',
                 'role_id' => $adminRoleId,
                 'email' => 'admin@example.com',
+                'phone' => '2222222222',
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'), // Change this to a more secure password
                 'remember_token' => Str::random(10),
@@ -46,6 +48,7 @@ class UserSeeder extends Seeder
                 'name' => 'Regular User',
                 'role_id' => $userRoleId,
                 'email' => 'user@example.com',
+                'phone' => '3333333333',
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'), // Change this to a more secure password
                 'remember_token' => Str::random(10),
