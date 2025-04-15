@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -31,7 +32,8 @@ class UsersController extends Controller
     {
         $title = 'Users';
         $page_title = 'Users';
-        return view('users.create', compact('title', 'page_title'));
+        $roles = Role::all(); # Added this
+        return view('users.create', compact('title', 'page_title', 'roles'));
     }
 
     /**
@@ -40,13 +42,14 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         //
-        dd($request->all());
+        // dd($request->all());
         try {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'nullable|string|unique:users|max:255',
             'phone' => 'string|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'role_id' => 'required|exists:roles,id', // added
         ]);
         if ($validator->fails()) {
             if ($request->expectsJson()) {
@@ -70,15 +73,15 @@ class UsersController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'role_id' => $request->role_id ?? 3,
-            'epo_id' => $request->epo_id,
-            'district' => $request->district,
+            // 'epo_id' => $request->epo_id,
+            // 'district' => $request->district,
             'password' => Hash::make($request->password),
-            'cnic' => $request->cnic,
+            // 'cnic' => $request->cnic,
             'phone' => $request->phone,
-            'license_no' => $request->license_no,
-            'address' => $request->address,
-            'otp_expires_at' => Carbon::now()->addMinutes(10),
-            'profile_picture' => $fileName,
+            // 'license_no' => $request->license_no,
+            // 'address' => $request->address,
+            // 'otp_expires_at' => Carbon::now()->addMinutes(10),
+            // 'profile_picture' => $fileName,
         ]);
 
         if ($request->expectsJson()) {
@@ -112,7 +115,7 @@ class UsersController extends Controller
             );
         } else {
             return redirect()->back()
-                ->withErrors($e->errors())
+                ->withErrors(['database' => 'A database error occurred: ' . $e->getMessage()])   #($e->errors())
                 ->withInput();
         }
     } catch (Exception $e) {
@@ -126,7 +129,7 @@ class UsersController extends Controller
             );
         } else {
             return redirect()->back()
-                ->withErrors($e->errors())
+                ->withErrors(['unexpected' => 'Something went wrong: ' . $e->getMessage()]) #($e->errors())
                 ->withInput();
         }
     }

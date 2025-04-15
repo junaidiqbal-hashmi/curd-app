@@ -39,15 +39,15 @@
                                 <input class="form-control" id="email" type="email" name="email" placeholder="Enter Email" />
                             </div>
                             <!-- Form Group (new password)-->
-                            {{-- <div class="mb-3">
-                                <label class="small mb-1" for="phone">User Role</label>
-                                <select class="form-control" id="role_id" name="role_id">
-                                    <option>Chose Role</option>
+                            <div class="mb-3">
+                                <label class="small mb-1" for="role_id">User Role</label>
+                                <select class="form-control" id="role_id" name="role_id" required>
+                                    <option>Choose Role</option>
                                     @foreach($roles as $role)
                                     <option value="{{$role->id}}">{{$role->title}}</option>
                                     @endforeach
                                 </select>
-                            </div> --}}
+                            </div>
                             <!-- Form Group (new password)-->
                             <!-- Upload input field -->
                             {{-- <div class="mb-3">
