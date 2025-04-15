@@ -21,7 +21,7 @@ class UsersController extends Controller
     {
         $title = 'Users';
         $page_title = 'Users';
-        $users=User::all();
+        $users = User::with('role')->get(); # $users=User::all();
         return view('users.list', compact('users', 'title', 'page_title'));
     }
 

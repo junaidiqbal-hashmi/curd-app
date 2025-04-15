@@ -43,7 +43,7 @@
                             <td>{{$user->name}}</td>
                             <td><img  src="{{ asset('images/profile_pictures/' . ($user->profile_picture ?? 'default.png')) }}" style="width: 50px; border-radius: 24px;" alt="profile Picture"></td>
                             <td>{{$user->email ?? $user->phone }}</td>
-                            <td></td>
+                            <td>{{ $user->role->name ?? 'N/A' }}</td>
                             <td>
                                 <div class="badge bg-primary text-white rounded-pill">Active</div>
                             </td>
