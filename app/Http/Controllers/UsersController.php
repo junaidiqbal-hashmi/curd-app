@@ -22,6 +22,7 @@ class UsersController extends Controller
         $title = 'Users';
         $page_title = 'Users';
         $users = User::with('role')->get(); # $users=User::all();
+        // dd($users);
         return view('users.list', compact('users', 'title', 'page_title'));
     }
 
