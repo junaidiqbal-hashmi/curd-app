@@ -149,7 +149,9 @@ class UsersController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -157,7 +159,50 @@ class UsersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $user = User::findOrFail($id);
+    
+            // Validation
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'email' => 'nullable|string|email|max:255|unique:users,email,' . $id,
+                'phone' => 'string|max:255|unique:users,phone,' . $id,
+                'role_id' => 'required|exists:roles,id',
+            ]);
+    
+            if ($validator->fails()) {
+                if ($request->expectsJson()) {
+                    return response()->json([
+                        'error' => 'Validation failed',
+                        'errors' => $validator->errors()
+                    ], 422);
+                } else {
+                    return redirect()->back()
+                        ->withErrors($validator->errors())
+                        ->withInput();
+                }
+            }
+    
+            // Update fields
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->role_id = $request->role_id;
+    
+            $user->save();
+    
+            if ($request->expectsJson()) {
+                return response()->json(['user' => $user], 200);
+            }
+    
+            return redirect()->route('user.index')->with('success', 'User updated successfully.');
+        } catch (ValidationException $e) {
+            return $this->handleValidationException($e, $request);
+        } catch (QueryException $e) {
+            return $this->handleQueryException($e, $request);
+        } catch (Exception $e) {
+            return $this->handleGenericException($e, $request);
+        }
     }
 
     /**
