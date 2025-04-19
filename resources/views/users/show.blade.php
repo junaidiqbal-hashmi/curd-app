@@ -77,7 +77,8 @@
                         <div class="card-body text-center">
                             <!-- Profile picture image-->
                             <img class="img-account-profile rounded-circle mb-2" id="profile-image"
-                                src="{{ asset('images/profile_pictures/default.png') }}" alt="" />
+                                src="{{ asset('images/profile_pictures/' . ($user->profile_picture ?? 'default.png')) }}"
+                                alt="User Image" width="60" />
                             <!-- Profile picture help block-->
 
                         </div>

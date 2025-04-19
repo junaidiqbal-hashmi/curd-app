@@ -82,7 +82,7 @@ class UsersController extends Controller
             // 'license_no' => $request->license_no,
             // 'address' => $request->address,
             // 'otp_expires_at' => Carbon::now()->addMinutes(10),
-            // 'profile_picture' => $fileName,
+            'profile_picture' => $fileName,
         ]);
 
         if ($request->expectsJson()) {
@@ -169,6 +169,7 @@ class UsersController extends Controller
                 'email' => 'nullable|string|email|max:255|unique:users,email,' . $id,
                 'phone' => 'string|max:255|unique:users,phone,' . $id,
                 'role_id' => 'required|exists:roles,id',
+                'profile_picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             ]);
     
             if ($validator->fails()) {
@@ -190,21 +191,37 @@ class UsersController extends Controller
             $user->phone = $request->phone;
             $user->role_id = $request->role_id;
     
-            $user->save();
-    
-            if ($request->expectsJson()) {
-                return response()->json(['user' => $user], 200);
+            // Handle profile picture update
+            if ($request->hasFile('profile_picture')) {
+            // Delete old picture if it's not the default
+                if ($user->profile_picture && $user->profile_picture !== 'default.png') {
+                $oldPath = public_path('images/profile_pictures/' . $user->profile_picture);
+                    if (file_exists($oldPath)) {
+                    unlink($oldPath);
+                }
             }
-    
-            return redirect()->route('user.index')->with('success', 'User updated successfully.');
-        } catch (ValidationException $e) {
-            return $this->handleValidationException($e, $request);
-        } catch (QueryException $e) {
-            return $this->handleQueryException($e, $request);
-        } catch (Exception $e) {
-            return $this->handleGenericException($e, $request);
+
+            $fileName = time() . '.' . $request->profile_picture->extension();
+            $request->profile_picture->move(public_path('images/profile_pictures'), $fileName);
+
+            $user->profile_picture = $fileName;
         }
+
+        $user->save();
+
+        if ($request->expectsJson()) {
+            return response()->json(['user' => $user], 200);
+        }
+
+        return redirect()->route('user.index')->with('success', 'User updated successfully.');
+    } catch (ValidationException $e) {
+        return $this->handleValidationException($e, $request);
+    } catch (QueryException $e) {
+        return $this->handleQueryException($e, $request);
+    } catch (Exception $e) {
+        return $this->handleGenericException($e, $request);
     }
+}
 
     /**
      * Remove the specified resource from storage.

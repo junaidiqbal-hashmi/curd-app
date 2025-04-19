@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'role_id',
         'phone',
+        'profile_picture',
         // 'otp_expires_at',
         // 'profile_picture',
 
