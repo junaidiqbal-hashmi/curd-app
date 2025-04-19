@@ -27,5 +27,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('user', UsersController::class);
+Route::put('/user/change-password/{id}', [UsersController::class, 'changePassword'])->name('change.password');
 
 });

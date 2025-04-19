@@ -141,7 +141,8 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::with('role')->findOrFail($id);
+        return view('users.show', compact('user'));
     }
 
     /**
